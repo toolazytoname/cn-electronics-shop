@@ -13,7 +13,7 @@
   --warn: #d4b05a;
   --bad: #c77a6a;
   --blue: #8aa4c4;
-  --nav-w: 276px;
+  --nav-w: 268px;
   --radius: 18px;
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
@@ -66,17 +66,6 @@ img { max-width: 100%; display: block; }
 }
 .nav a.item:hover, .nav a.item.active {
   background: rgba(215, 176, 122, 0.1); color: var(--gold-2);
-}
-.nav a.item.sub {
-  padding-left: 18px;
-  font-size: 12.5px;
-  position: relative;
-}
-.nav a.item.sub::before {
-  content: "";
-  position: absolute; left: 8px; top: 50%;
-  width: 5px; height: 1px;
-  background: var(--line-2);
 }
 .menu-btn {
   display: none; position: fixed; top: 14px; left: 14px; z-index: 20;
