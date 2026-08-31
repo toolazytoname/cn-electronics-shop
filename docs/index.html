@@ -98,11 +98,11 @@
                 <td>速度和 27B 打平；仍打不过云端一线</td>
               </tr>
               <tr>
-                <td>一线开源 MoE<br>Kimi K3 / GLM-5.x / Qwen 2.4T</td>
-                <td>130G 到几百 G</td>
-                <td>工作站 / 多卡机柜</td>
-                <td>综合分大约 57–60，接近闭源</td>
-                <td>家用 64G 统一内存或单卡 24G</td>
+                <td>一线开源 MoE<br>Kimi K3 / GLM-5.2 / MiniMax M3</td>
+                <td>看下表。满血是几百 G 到 1.5T 显存，不是 130G</td>
+                <td>机柜 / 云</td>
+                <td>接近闭源。激活参数只有几十 B 到 100B，但<strong>全部专家都要进内存</strong></td>
+                <td>96G 卡、双 48G、家用 64G 统一内存</td>
               </tr>
               <tr>
                 <td>MiniMax H3</td>
@@ -128,9 +128,41 @@
             <article class="card">
               <div class="tag no">不要指望</div>
               <h3>大脑 · 一线 MoE</h3>
-              <p>那是 130G 起的事。64G Mac、单卡 24G、双卡 48G 都不是这一档。云端继续用。</p>
+              <p>96G 离满血差的不是 34G，是一个数量级。激活 40B 不等于 40G 显存。云端继续用。</p>
             </article>
           </div>
+
+          <h3>为什么不是「再加一张卡就到 K3」</h3>
+          <p>MoE 每次只算一小撮专家，所以<strong>算力</strong>像 23B / 40B / 104B；但路由每次可能点到不同专家，<strong>权重必须全在</strong>。显存跟总参数走，不跟激活参数走。网上「8GB 能跑 K3」「25GB 能跑 GLM-5.2」是把专家丢硬盘上读，一个 token 等很久，不是满血。</p>
+          <table>
+            <thead>
+              <tr><th>模型</th><th>总 / 激活</th><th>满血权重</th><th>能塞进家里的极限</th><th>正经跑起来</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MiniMax M3</td>
+                <td>428B / 23B</td>
+                <td>MXFP8 约 444G</td>
+                <td>1-bit 约 133G（内存+显存合计）。这大概就是早先「130G」的来源，而且已经不是满血</td>
+                <td>官方参考 8× B200</td>
+              </tr>
+              <tr>
+                <td>GLM-5.2</td>
+                <td>744B / 40B</td>
+                <td>FP8 约 744G；BF16 约 1.5T</td>
+                <td>2-bit 约 245G；1-bit 约 223G。24G 卡 + 256G 内存能开机，质量掉一截</td>
+                <td>官方配方 8× H200（约 1.1T 显存）</td>
+              </tr>
+              <tr>
+                <td>Kimi K3</td>
+                <td>2.8T / 104B</td>
+                <td>原生 MXFP4 约 <strong>1.56T</strong></td>
+                <td>1-bit 仍要约 600G。硬盘流式读可以在笔记本上「出字」，大约半分钟一个 token</td>
+                <td>8× B300（约 2.3T）或 16× B200。单台 DGX B300 国内有人报到约 1200 万。官方还提 64 卡超节点，那才靠近「两千万」的量级</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>96G 和 130G 只差 34G，听起来近。130G 是 MiniMax M3 压到 1-bit 的地板，不是 K3/GLM 满血。满血 K3 是 1.56T，大约 16 张 96G 卡只装权重；再加上下文和运行开销，家用第一台不用往这边想。</p>
 
           <p>16G 卡（5080 / 5070 Ti）玩游戏香。27B Q4 权重大约 17G，再加上下文会整天卸载。不要用 16G「兼顾」模型。</p>
         </section>
@@ -324,7 +356,7 @@
               <tr>
                 <td>PRO 6000 *1</td>
                 <td>96G 官方</td>
-                <td>70B Q8（约 75G，接近原权重）。120B 级 MoE Q4：gpt-oss 120B、Qwen 122B-A10B（大约 60–85G）。27B 可上 BF16。一线 MoE（Kimi K3 / GLM-5.x / Qwen 2.4T，130G 起）仍然装不下。</td>
+                <td>70B Q8（约 75G）。120B 级 MoE Q4：gpt-oss 120B、Qwen 122B-A10B（大约 60–85G）。27B 可上 BF16。K3/GLM 满血是 744G–1.56T，不是 130G。</td>
                 <td>家用单卡能摸到的最大一档：70B 高质量，或 120B 小 MoE。仍不是云端大脑。ComfyUI 很宽；H3 本地还是 768p 草稿。第一台不必买。</td>
               </tr>
               <tr class="group"><td colspan="4">双卡 · 模型切开凑显存，游戏不叠加</td></tr>
@@ -380,7 +412,7 @@
           </table>
 
           <div class="callout">
-            <strong>96G 单独说一句：</strong>相对 48G，多出来的不是「突然能跑云端那种 744B」，而是 70B 从 Q4 升到 Q8，以及 120B 级小 MoE（激活仍只有几 B 到十几 B）。Kimi K3 / GLM-5.2 满血仍然是 130G 起。H3 本地不会因此变成 2K 成片。
+            <strong>96G 单独说一句：</strong>相对 48G，多出来的是 70B Q8 和 120B 级小 MoE Q4。GLM-5.2 满血约 744G，Kimi K3 满血约 1.56T。早先那句「130G」是 MiniMax M3 压到 1-bit 的地板，不是满血，也不是再买 34G 就到。H3 本地不会因此变成 2K 成片。
           </div>
 
           <div class="vram-ladder">
