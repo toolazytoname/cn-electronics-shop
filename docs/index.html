@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>本地大模型 + ComfyUI + 4K 游戏 · 选型备忘</title>
+  <meta name="description" content="把一次硬件选型聊成的分支、预算和具体机器，收成一份可翻的目录。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <button class="menu-btn" type="button">目录</button>
+
+  <div class="layout">
+    <aside class="nav">
+      <div class="brand">选型备忘 <small>2026.08</small></div>
+      <p class="meta">本地模型 · ComfyUI · H3 · 4K 游戏</p>
+
+      <h2>目录</h2>
+      <a class="item" href="#start">这次要买什么</a>
+      <a class="item" href="#hype">先把话说清楚</a>
+      <a class="item" href="#can-do">64G 模型能干嘛</a>
+      <a class="item" href="#roads">两条路怎么分</a>
+      <a class="item" href="#windows">为什么 Windows 更可玩</a>
+      <a class="item" href="#tiers">投入分档</a>
+      <a class="item" href="#market">市场上找到的货</a>
+      <a class="item" href="#g35">光魔 G35 深挖</a>
+      <a class="item" href="#expand">老平台扩不了什么</a>
+      <a class="item" href="#check">验机与提问</a>
+      <a class="item" href="#end">现在怎么走</a>
+    </aside>
+
+    <main class="main" id="main">
+      <header class="hero" id="start">
+        <img class="bg" src="images/hero-desk.jpg" alt="" />
+        <div class="hero-copy">
+          <span class="kicker">一份给自己看的采购备忘</span>
+          <h1>本地大模型、出图出片、再打 4K，一台机器怎么拆。</h1>
+          <p class="lede">从微信公众号里的 Qwen3.8-27B，聊到无头 Mac、Strix Halo、3090 / 4090 整机，最后停在闲鱼一台 12999 的光魔 G35。下面按分支收束，方便对照，不是下单按钮。</p>
+          <div class="chips">
+            <span class="chip">截至 2026-08-28</span>
+            <span class="chip">价格会变，以页面为准</span>
+            <span class="chip">24G 显存是门槛</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section>
+          <div class="callout">
+            <strong>当前倾向：</strong>闲鱼 ROG 光魔 G35，12999。R9 5950X + 64G DDR4 + 华硕 3090 24G 猛禽。能覆盖 27B、ComfyUI、H3 草稿和 4K 降特效游戏。不是 GLM 5.2 平替，也不是可升级平台。过保不退，先问清硬盘是不是真的 2T。
+          </div>
+        </section>
+
+        <section id="hype">
+          <h2>先把话说清楚</h2>
+          <p class="sub">两条营销截图把期待拉歪了。分数有真的，话术过了。</p>
+
+          <figure class="figure">
+            <img src="images/hero-gpu.jpg" alt="机箱里的三风扇显卡" />
+            <figcaption>真正决定本地体验的是显存和 CUDA，不是「统一内存」四个字。</figcaption>
+          </figure>
+
+          <p>Qwen3.8-27B 在 Artificial Analysis 上，<code>xhigh</code> 思考能打到大约 52 分，和 GLM-5.2 max 的 51–53 坐同一档。这是第三方榜，不是纯吹。但「大 28 倍还差不多」比的是 GLM 总参数 744B，干活时只激活约 40B，和 27B 稠密只差大约 1.5 倍。</p>
+          <p>日常你不会一直开最高思考。medium 掉到 44。本地跑的是 Q4，再掉一截。AA 是合成榜，啰嗦、长思考、长仓库、多工具循环，都会把体感拉开。公众号作者给 dsh 写能装的 TUI 插件，更接近真实水平：小功能可以，当主力会慢。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag">站得住</div>
+              <h3>900 美元二手 24G 卡能跑 27B</h3>
+              <p>二手 3090 大约这个量级。Q4 能跑，社区大约 35–70 tok/s。</p>
+            </article>
+            <article class="card">
+              <div class="tag">当段子</div>
+              <h3>「Dario 紧急开会立法」</h3>
+              <p>来自 X 账号的突发体，不是新闻。LiveCodeBench 那 1.5 分差也不是同 harness 重跑。</p>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>模型</th><th>你本地装得下吗</th><th>定位</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Qwen3.8-27B Q4</td><td>24G 显存或 32G+ 统一内存</td><td>现在最强的「能带回家」编码模型</td></tr>
+              <tr><td>GLM-4.7-Flash 等小 MoE</td><td>大约 20G</td><td>更快，上限略低</td></tr>
+              <tr><td>70B Q4</td><td>64G 统一内存很紧</td><td>能开机，不当日常</td></tr>
+              <tr><td>MiniMax M3 / GLM-5.2 / Kimi K3</td><td>130G 到几百 G</td><td>工作站，家用 64G 不可能</td></tr>
+              <tr><td>MiniMax H3</td><td>视频模型，不是聊天</td><td>开源 768p 草稿；2K 走 API</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="can-do">
+          <h2>64G 开源模型能干嘛</h2>
+          <p class="sub">买到的不是开源天花板，是 27B 这一档。</p>
+          <p>开源一线（Kimi K3、GLM-5.3、Qwen 2.4T）综合分大约 57–60，已经贴近闭源。那些是 750B–2.8T 的 MoE。64G 只能舒服跑 27B 稠密 / 30B 级小 MoE。你已经有 32G 本，27B Q4 现在就能试；64G 买的是 Q5/Q8、更长会话、少换页。</p>
+
+          <div class="grid-3">
+            <article class="card">
+              <div class="tag ok">适合本地</div>
+              <h3>执行层</h3>
+              <p>按明确需求写功能、补测试、修报错、小重构。截图改 UI。私有代码 review。无限次抽取、翻译、总结。</p>
+            </article>
+            <article class="card">
+              <div class="tag warn">勉强</div>
+              <h3>草稿机</h3>
+              <p>拆任务、解释陌生代码、API 挂了的备份。要人盯着，会啰嗦。</p>
+            </article>
+            <article class="card">
+              <div class="tag no">不要指望</div>
+              <h3>大脑</h3>
+              <p>关掉 GLM 无感切换、含糊需求过夜交付、硬推理、超长 agent。那是云端的事。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="roads">
+          <h2>两条路怎么分</h2>
+          <p class="sub">统一内存买容量；独显买速度、出图和游戏。</p>
+
+          <div class="pair">
+            <figure class="figure">
+              <img src="images/hero-mac.jpg" alt="合盖笔记本当无头主机外接显示器" />
+              <figcaption>无头 M1 Max 64G：大约 8400–9000。容量好，3A 基本没有。</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="images/hero-desk.jpg" alt="玻璃侧透主机和显示器" />
+              <figcaption>Windows + 24G NVIDIA：ComfyUI、H3、游戏都在这条线上。</figcaption>
+            </figure>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th></th><th>闲鱼 M1 Max 无头</th><th>Strix Halo 64G</th><th>3090 / 4090 整机</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>典型价</td><td>8400–9000</td><td>新品约 1.0–1.3 万</td><td>1.3 万起 / 2.6 万起</td></tr>
+              <tr><td>内存形态</td><td>64G 统一，约 400 GB/s</td><td>64G 统一，约 256 GB/s</td><td>24G 显存 + 系统内存</td></tr>
+              <tr><td>27B Q4</td><td>约 20–25 tok/s</td><td>约 12–24 tok/s</td><td>3090 约 40–60</td></tr>
+              <tr><td>70B Q4</td><td>能塞，很慢</td><td>64G 紧</td><td>塞不下</td></tr>
+              <tr><td>ComfyUI / H3 / 4K 3A</td><td>弱 / 移植早期 / 无</td><td>2K 中画质游戏，出图一般</td><td>主场</td></tr>
+            </tbody>
+          </table>
+
+          <p>Windows 没有「8400、64G 统一内存」这个竞品。Strix Halo 64G 比那台无头 Mac 贵，带宽还更低。普通台式 64G DDR5 不是统一内存，模型只能吃显存。</p>
+        </section>
+
+        <section id="windows">
+          <h2>为什么 Windows 更可玩</h2>
+          <p class="sub">ComfyUI、H3、3A 几乎全绑 NVIDIA + CUDA。</p>
+
+          <figure class="figure">
+            <img src="images/hero-nodes.jpg" alt="节点工作流屏幕" />
+            <figcaption>出图出片的工作流、加速节点、Civitai 模型，Mac 上经常缺一半。</figcaption>
+          </figure>
+
+          <p>MiniMax H3 是海螺 3.0 那种文生视频+音频，不是聊天模型。开源 H3-Base 大约 4–15 秒、768p、带立体声。ComfyUI 推荐 pruned INT8 全家桶大约 42GB 磁盘。12–16G 卡「能出片」，24G 才像草稿机。2K 成片仍走官方 API。</p>
+          <p>同一张卡不能同时占满 27B、H3 和游戏。切着用。</p>
+        </section>
+
+        <section id="tiers">
+          <h2>投入分档</h2>
+          <p class="sub">显示器已有 4K。没有独显，要整机。内存和固态现在也贵。</p>
+
+          <div class="grid-3">
+            <article class="card">
+              <div class="tag">能碰 · 1.6–2.2 万</div>
+              <h3>二手 3090 24G</h3>
+              <p>27B、Flux FP8、H3 量化草稿都能跑通。4K 游戏要降。视频迭代会憋。</p>
+            </article>
+            <article class="card">
+              <div class="tag">能玩 · 2.5–3.3 万</div>
+              <h3>二手 4090 / 4090D</h3>
+              <p>ComfyUI 当主力、H3 更稳、4K 开 DLSS 说得过去。系统内存 64G 是地板。</p>
+            </article>
+            <article class="card">
+              <div class="tag">先别冲</div>
+              <h3>5090 / 魔改 48G</h3>
+              <p>国内溢价凶。H3 本地本来就是 768p 草稿，为它多花一万不值。</p>
+            </article>
+          </div>
+
+          <p>16G 的 5080 / 5070 Ti 玩游戏香，27B Q4 权重大约 17G，再加上下文会整天卸载。不要用 16G 卡「兼顾」。</p>
+        </section>
+
+        <section id="market">
+          <h2>市场上找到的货</h2>
+          <p class="sub">2026-08-28 翻闲鱼 / 淘宝。京东网页要登录，没搜成。闲鱼搜「整机」前几页几乎全是出租。</p>
+
+          <h3 style="font-family:Fraunces,serif;font-weight:500;">能碰</h3>
+          <table>
+            <thead>
+              <tr><th>东西</th><th>价</th><th>备注</th><th>链接</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ROG 光魔 G35 整机</td>
+                <td>12999</td>
+                <td>5950X / 64G / 3090 猛禽。当前最合适。</td>
+                <td><a href="https://www.goofish.com/item?id=1035605864160">闲鱼 1035605864160</a></td>
+              </tr>
+              <tr>
+                <td>索泰 3090 花姑娘</td>
+                <td>7000</td>
+                <td>上海，单卡，需自组其余。</td>
+                <td><a href="https://www.goofish.com/item?id=1077371703729">闲鱼</a></td>
+              </tr>
+              <tr>
+                <td>七彩虹火神 3090</td>
+                <td>7600</td>
+                <td>称有京东订单。</td>
+                <td><a href="https://www.goofish.com/item?id=1078213402166">闲鱼</a></td>
+              </tr>
+              <tr>
+                <td>华硕白猛禽 3090</td>
+                <td>7555</td>
+                <td>上海自提。</td>
+                <td><a href="https://www.goofish.com/item?id=1077356663635">闲鱼</a></td>
+              </tr>
+              <tr>
+                <td>淘宝康宏亿组装机</td>
+                <td>21218 起</td>
+                <td>店铺无评分、已售 0，不优先。</td>
+                <td><a href="https://item.taobao.com/item.htm?id=1007554620426">淘宝</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 style="font-family:Fraunces,serif;font-weight:500;">能玩</h3>
+          <table>
+            <thead>
+              <tr><th>东西</th><th>价</th><th>备注</th><th>链接</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>惠普 OMEN 45L</td>
+                <td>32000</td>
+                <td>285K / 64G / 4090D / 2T+2T。仅北京五棵松自提。</td>
+                <td><a href="https://www.goofish.com/item?id=1070023676991">闲鱼</a></td>
+              </tr>
+              <tr>
+                <td>联想刃 9000K 全新</td>
+                <td>33499</td>
+                <td>全国联保。上海可自提。</td>
+                <td><a href="https://www.goofish.com/item?id=1077221650417">闲鱼</a></td>
+              </tr>
+              <tr>
+                <td>华硕 14700KF + 4090D</td>
+                <td>25900</td>
+                <td>只有 32G + 1T，还要补内存和盘。</td>
+                <td><a href="https://www.goofish.com/item?id=1042452884761">闲鱼</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            无头 M1 Max 64G 当时约 8400–9000，电池新、有试用退的更值。M2 Max 96G 当时只有求购。Intel 2019「64G 无头」不要。
+          </div>
+        </section>
+
+        <section id="g35">
+          <h2>光魔 G35 深挖</h2>
+          <p class="sub">截图对得上标题。这是目前最合适的「能碰」整机，前提是接受过保不退。</p>
+
+          <div class="pair">
+            <figure class="figure">
+              <img src="images/g35-case.jpg" alt="ROG 光魔 G35 机箱外观" />
+              <figcaption>卖家实拍。45L 异形壳，带提手，不是标准海景房。</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="images/g35-inside.jpg" alt="侧透里的猛禽 3090 三风扇" />
+              <figcaption>横插华硕猛禽三风扇，不是竖插。换卡仍然麻烦，但比竖插好。</figcaption>
+            </figure>
+          </div>
+
+          <figure class="figure">
+            <img src="images/g35-ludashi.jpg" alt="鲁大师硬件列表截图" />
+            <figcaption>鲁大师：5950X、64G DDR4 3200 16G×4 镁光、3090 24G 华硕、Win11 家庭版。主硬盘只扫到 1T 三星。</figcaption>
+          </figure>
+
+          <table>
+            <thead>
+              <tr><th>项</th><th>页面 / 截图</th><th>官方顶配口径</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>CPU</td><td>R9 5950X 16 核</td><td>AM4 消费级顶格</td></tr>
+              <tr><td>内存</td><td>64G DDR4 3200，四槽插满</td><td>官方上限 128G</td></tr>
+              <tr><td>显卡</td><td>华硕 RTX 3090 24G</td><td>STRIX 三风扇</td></tr>
+              <tr><td>硬盘</td><td>截图主盘 1T</td><td>常见 2×1T，必须问清</td></tr>
+              <tr><td>电源</td><td>未拍铭牌</td><td>850W，双烤大约 670W</td></tr>
+              <tr><td>系统</td><td>Win11 家庭版 23H2</td><td>个人用够</td></tr>
+              <tr><td>卖家</td><td>广州，闲鱼 10 年，202 单，98%</td><td>过保，售出不退不换</td></tr>
+            </tbody>
+          </table>
+
+          <div class="tree">
+            <div class="branch"><div class="from">27B</div><div>24G 显存是甜点，大约 40–60 tok/s，比无头 Max 快。</div></div>
+            <div class="branch"><div class="from">ComfyUI</div><div>Flux FP8、SDXL、LoRA 能玩。24G 正好。</div></div>
+            <div class="branch"><div class="from">H3</div><div>能量化出 768p 草稿，一条几分钟到十几分钟。64G 内存帮得上卸载。</div></div>
+            <div class="branch"><div class="from">4K 3A</div><div>开 DLSS 能打；原画光追会劝退。2026 新作更吃 4090。</div></div>
+          </div>
+        </section>
+
+        <section id="expand">
+          <h2>老平台扩不了什么</h2>
+          <p class="sub">差在换代，不差在加硬盘。买来是用 3–5 年再整台换。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag no">基本封死</div>
+              <h3>CPU / 内存代际 / 旗舰卡</h3>
+              <p>5950X 已是 AM4 顶。再强要换板、换 DDR5、换壳。850W 带 4090 很紧，5090 别想。3090 24G 对本地模型和 ComfyUI 已经对口，升级 4090 还是 24G，主要买速度。</p>
+            </article>
+            <article class="card">
+              <div class="tag ok">还能做</div>
+              <h3>加盘、换硅脂、换水冷</h3>
+              <p>前面有热插拔 M.2 仓。模型 + LoRA + 游戏建议加到 4T 级。240 水冷用了四五年，泵是耗材。在这壳子里换比标准机箱麻烦。</p>
+            </article>
+          </div>
+
+          <p>没有 PCIe 5.0、DDR5、USB4。Wi-Fi 6。主板是整机专用 GA35DX。Win11 家庭版没有专业版那些企业功能，个人用无所谓。</p>
+        </section>
+
+        <section id="check">
+          <h2>验机与提问</h2>
+          <p class="sub">售出不退不换，发货前问死，到货先测再确认。</p>
+          <ol class="ask">
+            <li>固态到底几块、各多少。鲁大师里 1T 之外还有没有。</li>
+            <li>GPU-Z：3090、24G、华硕猛禽，不是涡轮矿卡。</li>
+            <li>电源铭牌是不是 850W。</li>
+            <li>水冷有没有漏、泵转不转，开机听一分钟。</li>
+            <li>FurMark 5–10 分钟：核心温度、显存温度。3090 显存容易过 90°C。</li>
+            <li>走闲鱼担保。外接你的 4K 屏能出 60Hz。</li>
+          </ol>
+          <p>不要买：出租链接、4090 标 3000、魔改 48G 当第一台、淘宝 2280 的「3090」、笔记本 4090 16G。</p>
+        </section>
+
+        <section id="end">
+          <h2>现在怎么走</h2>
+          <div class="callout">
+            预算卡在 2 万内、又要 CUDA 生态：光魔 G35 是目前最合适的整机。人在北京、能出到 3.2 万：五棵松 OMEN 45L 是「能玩」里最省事的。要保修：刃 9000K。死磕 64G 统一内存、不打 3A：还是无头 M1 Max。
+          </div>
+          <p>本地 27B 是免费执行层，不是免费大脑。H3 本地是 768p 草稿。游戏、出图、模型同一时刻只开一个。</p>
+          <p class="foot">整理自一次连续选型对话。价格和在售状态以当天页面为准。仓库：<a href="https://github.com/toolazytoname/cn-electronics-shop">toolazytoname/cn-electronics-shop</a></p>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="assets/app.js"></script>
+</body>
+</html>

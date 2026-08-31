@@ -53,6 +53,14 @@ Claude Code / Cursor 同样认根目录的 `SKILL.md`，clone 进各自的 `skil
 - 「闲鱼 Mac Mini 32G，帮我看这几个收藏靠不靠谱」
 - 「5070 12G 整机现在什么价，等到双11能便宜多少」
 
+## 选型备忘（GitHub Pages）
+
+把一次「本地 27B + ComfyUI + H3 + 4K 游戏」的选型对话收成网页，左侧是目录：
+
+https://toolazytoname.github.io/cn-electronics-shop/
+
+源文件在 [`docs/`](docs/)。价格会过期，以当天商品页为准。
+
 ## 许可
 
 MIT
