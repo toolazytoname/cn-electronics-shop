@@ -26,6 +26,17 @@
       <a class="item" href="#roads">两条路怎么分</a>
       <a class="item" href="#windows">为什么 Windows 更可玩</a>
       <a class="item" href="#tiers">投入分档</a>
+
+      <h2>显卡</h2>
+      <a class="item sub" href="#gpu">云上那张表</a>
+      <a class="item sub" href="#gpu-line">消费卡三代</a>
+      <a class="item sub" href="#gpu-d">中国特供 D</a>
+      <a class="item sub" href="#gpu-mod">魔改 48G</a>
+      <a class="item sub" href="#gpu-pro">专业卡 PRO</a>
+      <a class="item sub" href="#gpu-dual">双卡能不能叠</a>
+      <a class="item sub" href="#gpu-jd">京东涡轮 3090</a>
+
+      <h2>整机</h2>
       <a class="item" href="#market">市场上找到的货</a>
       <a class="item" href="#g35">光魔 G35 深挖</a>
       <a class="item" href="#expand">老平台扩不了什么</a>
@@ -187,6 +198,309 @@
           <p>16G 的 5080 / 5070 Ti 玩游戏香，27B Q4 权重大约 17G，再加上下文会整天卸载。不要用 16G 卡「兼顾」。</p>
         </section>
 
+        <section id="gpu">
+          <h2>云上那张表怎么读</h2>
+          <p class="sub">租卡菜单，不是买卡货架。标签是平台按小时卖的排序。</p>
+
+          <figure class="figure shot">
+            <img src="images/autodl-gpu-list.png" alt="云平台显卡租用列表，从 3090 到 PRO 6000，含单卡和双卡" />
+            <figcaption>云 GPU 租用列表。*1 / *2 是张数。「实惠」「大显存首推」是出租标签。红框是官方 48G 专业卡，不是 4090。</figcaption>
+          </figure>
+
+          <p>先把这张表拆成四类，再看数字。本地模型先看<strong>显存</strong>，出图和游戏再看<strong>算力</strong>。两张 24G 不是一张 48G 那么简单，下面单独说。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag">只看这一条</div>
+              <h3>显存决定装得下什么</h3>
+              <p>27B Q4 大约 17G 权重，24G 是甜点。70B Q4 大约 40G，一张 24G 塞不下，要 48G 或双卡。</p>
+            </article>
+            <article class="card">
+              <div class="tag">别被标签带跑</div>
+              <h3>算力决定有多快</h3>
+              <p>同样 24G：3090 → 4090 大约快一倍。PRO 5000 的 48G 是官方容量，算力只相当于 4090D，不是更快的 4090。</p>
+            </article>
+          </div>
+
+          <p class="legend"><span class="dot gold"></span><b>金条</b> 显存（满格 96G）　<span class="dot blue"></span><b>蓝条</b> 相对算力（满格 PRO 6000）</p>
+          <div class="vram-ladder">
+            <div class="step tight">
+              <div class="cap">16G<small>装不下</small></div>
+              <div class="body">
+                <strong>5080</strong>
+                <span>玩游戏、出图快。27B Q4 权重就约 17G，再加上下文会卸载。双卡 16G×2 也不是一张 32G，要软件切开。</span>
+              </div>
+            </div>
+            <div class="step you">
+              <div class="cap">24G<small>你这档</small></div>
+              <div class="body">
+                <strong>3090 · 4090D · 4090 · 5090D V2</strong>
+                <span>同一档显存，差的是速度。3090 最便宜、能双卡打 NVLink。4090 大约 2.3 倍算力。5090D V2 把 32G 砍回 24G，游戏几乎不掉，AI 掉一截。</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="cap">32G<small>宽一点</small></div>
+              <div class="body">
+                <strong>5090</strong>
+                <span>消费卡里最大的官方显存。27B 很舒服，70B Q4 仍然紧。国内溢价凶，不是第一台该冲的。</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="cap">48G<small>70B 入场</small></div>
+              <div class="body">
+                <strong>PRO 5000 · 6000 Ada · 魔改 4090</strong>
+                <span>一张卡跑 70B Q4。官方专业卡有 ECC 和店保；魔改是焊出来的，没有英伟达质保。你现在跑 27B，48G 用不满。</span>
+              </div>
+            </div>
+            <div class="step over">
+              <div class="cap">96G<small>工作站</small></div>
+              <div class="body">
+                <strong>PRO 6000 Blackwell</strong>
+                <span>云上「新品推荐」。家用不必买。要试大模型，按小时租。</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="gpu-line">
+          <h2>消费卡三代</h2>
+          <p class="sub">30 / 40 / 50，同一代里数字越大越强。跨代先看显存，再看速度。</p>
+
+          <div class="spec-map">
+            <article class="spec-row you">
+              <div class="name">RTX 3090<small>Ampere · 2020 · 350W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:25%"></i></div> 24G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:28%"></i></div> 1.0×</div>
+              </div>
+              <div class="verdict">10496 CUDA，384-bit，936 GB/s。消费卡里最后一张带 NVLink 的。你现在的门槛。</div>
+            </article>
+            <article class="spec-row">
+              <div class="name">RTX 4090<small>Ada · 2022 · 450W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:25%"></i></div> 24G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:66%"></i></div> 2.3×</div>
+              </div>
+              <div class="verdict">16384 CUDA，同样 24G。ComfyUI / 游戏主场。没有 NVLink。双卡只能走 PCIe。</div>
+            </article>
+            <article class="spec-row">
+              <div class="name">RTX 5080<small>Blackwell · 2025 · 360W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:17%"></i></div> 16G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:45%"></i></div> 1.6×</div>
+              </div>
+              <div class="verdict">比 3090 快，显存比 3090 少 8G。云上 *2 是租用技巧，家里不要买两张来「凑 32G」。</div>
+            </article>
+            <article class="spec-row">
+              <div class="name">RTX 5090<small>Blackwell · 2025 · 575W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:33%"></i></div> 32G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:83%"></i></div> 2.9×</div>
+              </div>
+              <div class="verdict">21760 CUDA，512-bit GDDR7，1792 GB/s。快，也贵，也饿电。电源和机箱都不是 3090 那套能带的。</div>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>卡</th><th>显存</th><th>相对 3090</th><th>27B Q4</th><th>4K 游戏</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>3090</td><td>24G GDDR6X</td><td>1.0×</td><td>甜点</td><td>要降特效</td><td>能 NVLink 双卡</td></tr>
+              <tr><td>4090D</td><td>24G GDDR6X</td><td>~2.1×</td><td>同显存，更快</td><td>开 DLSS 说得过去</td><td>中国特供，见下节</td></tr>
+              <tr><td>4090</td><td>24G GDDR6X</td><td>~2.3×</td><td>同显存，更快</td><td>主场</td><td>无 NVLink</td></tr>
+              <tr><td>5080</td><td>16G GDDR7</td><td>~1.6×</td><td>会卸载</td><td>香</td><td>不要兼顾模型</td></tr>
+              <tr><td>5090</td><td>32G GDDR7</td><td>~2.9×</td><td>宽裕</td><td>旗舰</td><td>家用溢价凶</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="gpu-d">
+          <h2>中国特供 D</h2>
+          <p class="sub">D 不是「豪华版」。是出口管制砍过的大陆卡。显存常常一样，算力少一截。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag">4090D</div>
+              <h3>CUDA 14592，比 4090 少约 11%</h3>
+              <p>游戏大约慢 6%，AI 大约慢 6–10%。同样 24G、384-bit。云上更常见，因为国内货就是这个。买整机时别被少一个字母吓到，也别当它比 4090 强。</p>
+            </article>
+            <article class="card">
+              <div class="tag">5090D / D V2</div>
+              <h3>D 砍张量；V2 再砍显存</h3>
+              <p>5090D 游戏接近满血 5090，AI 张量大约少 30%。5090D V2 把 32G / 512-bit 收到 24G / 384-bit，四个显存位空焊。游戏掉 1–2%，AI 掉 10–25%。云上标「新品」，对你是同档 24G 里更贵的 50 系。</p>
+            </article>
+          </div>
+
+          <p>对照那张表：4090D 24G 和 4090 24G 几乎干同一件事，D 略慢、更好租。5090D V2 24G 不要看成「新一代 24G 就该换」——显存没变，贵的是架构和溢价。</p>
+        </section>
+
+        <section id="gpu-mod">
+          <h2>魔改 48G</h2>
+          <p class="sub">英伟达没卖过 4090 48G。焊上去的容量，不是新品规格。</p>
+
+          <p>云上的「4090D 48G / 4090 48G」和闲鱼同款：用 3090 那种双面显存 PCB 思路，多焊颗粒，再刷 48G 的 VBIOS。核心还是 4090 / 4090D，算力不变，只是显存翻倍。2026 年夏天有人当理财炒到 2 万出头。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag ok">它唯一的好处</div>
+              <h3>一张卡装下 70B Q4</h3>
+              <p>不用学双卡切分，也不用 NVLink。ComfyUI 大分辨率、长上下文更不容易爆。</p>
+            </article>
+            <article class="card">
+              <div class="tag no">不要当第一台</div>
+              <h3>没有官方质保，店保而已</h3>
+              <p>颗粒、供电、散热都是改出来的。H3 本地本来就是 768p 草稿，为它多花一万不值。已经写在投入分档里。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="gpu-pro">
+          <h2>专业卡 PRO</h2>
+          <p class="sub">红框里的 PRO 5000，是官方 48G，不是更快的游戏卡。</p>
+
+          <div class="spec-map">
+            <article class="spec-row circled">
+              <div class="name">PRO 5000<small>Blackwell · 48G ECC · 300W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:50%"></i></div> 48G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:58%"></i></div> 2.1×</div>
+              </div>
+              <div class="verdict">14080 CUDA，384-bit GDDR7。云上标「大显存首推」：官方 48G + ECC + 功耗低。算力约等于 4090D，比 4090 慢。</div>
+            </article>
+            <article class="spec-row">
+              <div class="name">RTX 6000 Ada<small>Ada · 48G ECC · 300W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:50%"></i></div> 48G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:72%"></i></div> 2.6×</div>
+              </div>
+              <div class="verdict">18176 CUDA，上一代工作站旗舰。同样 48G，核心比 PRO 5000 多。二手有时比新 PRO 更香。</div>
+            </article>
+            <article class="spec-row">
+              <div class="name">PRO 6000<small>Blackwell · 96G ECC · 300–600W</small></div>
+              <div class="tracks">
+                <div class="track-row">显存 <div class="track vram"><i style="--w:100%"></i></div> 96G</div>
+                <div class="track-row">算力 <div class="track compute"><i style="--w:100%"></i></div> 3.5×</div>
+              </div>
+              <div class="verdict">24064 CUDA，512-bit GDDR7。云上按小时租来试 70B / 长上下文。家用第一台不必买。</div>
+            </article>
+          </div>
+
+          <p>和魔改 4090 48G 的差别：专业卡是原厂容量、ECC、涡轮或双槽工作站形态、有质保；魔改是消费卡焊容量、TDP 450W、没官方保。你要 27B + 4K 游戏，两条都不是现在该买的。想体会 48G，云上租几个小时 PRO 5000 就够。</p>
+        </section>
+
+        <section id="gpu-dual">
+          <h2>双卡能不能叠</h2>
+          <p class="sub">普通 3090 可以两张一起用。叠的是显存池，不是游戏帧数。</p>
+
+          <figure class="figure">
+            <img src="images/gpu-dual.jpg" alt="机箱里两张涡轮显卡并排，中间有桥接" />
+            <figcaption>双卡长这样：两张薄的涡轮卡并排，热往机箱外抽。三风扇猛禽并排会把热吹进另一张卡。</figcaption>
+          </figure>
+
+          <div class="grid-3">
+            <article class="card">
+              <div class="tag no">游戏</div>
+              <h3>不能加帧</h3>
+              <p>SLI 已经死了。两张 3090 不会变成一张更强的游戏卡。显示器只认其中一张。</p>
+            </article>
+            <article class="card">
+              <div class="tag ok">本地模型</div>
+              <h3>能合成 48G</h3>
+              <p>llama.cpp <code>--tensor-split</code>、vLLM 张量并行、Ollama 自动切。70B Q4 大约 40G，这是双 3090 存在的理由。</p>
+            </article>
+            <article class="card">
+              <div class="tag warn">出图 / H3</div>
+              <h3>多半还是一张在干</h3>
+              <p>ComfyUI 多数工作流占一张卡。H3 也是。第二张闲着，除非你自己把节点绑到 GPU1。</p>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th></th><th>一张 3090 24G</th><th>两张 3090 48G</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>27B Q4</td><td>正好，大约 40–60 tok/s</td><td>几乎没好处，通信还可能更慢</td></tr>
+              <tr><td>70B Q4</td><td>要往内存卸载，很慢</td><td>装得下，社区大约 10–20 tok/s</td></tr>
+              <tr><td>ComfyUI / H3 / 4K</td><td>主场</td><td>第二张帮不上游戏</td></tr>
+              <tr><td>功耗</td><td>~350W</td><td>~700W 双卡，电源 1000W 起</td></tr>
+            </tbody>
+          </table>
+
+          <h3>NVLink 不是必须，但 3090 是消费卡里最后能插的</h3>
+          <p>3090（不是 3090 Ti）卡身上有 NVLink 齿。桥大约几十到一百块。带宽远高于 PCIe，对训练和长上下文 prefills 有用；日常 llama.cpp 按层切分，PCIe 也够。4090、5090 消费卡都砍掉了 NVLink，双卡只能走主板。</p>
+
+          <div class="callout">
+            <strong>光魔 G35 叠不了第二张。</strong>异形 45L、850W、横插一张猛禽三风扇。物理空间、电源、风道三条都不够。双卡是另组一台的事，不是给这台加购。
+          </div>
+
+          <p>云上的「实惠双卡 3090 *2」是已经接好的机器，按小时付钱。想试 70B，先租几个小时，再决定要不要买第二张实体卡。</p>
+        </section>
+
+        <section id="gpu-jd">
+          <h2>京东这张涡轮 3090</h2>
+          <p class="sub">什么值得买转到的工业包装单涡轮。芯是 3090，形态是给机架用的，话术是矿卡店那一套。</p>
+
+          <div class="pair">
+            <figure class="figure">
+              <img src="images/gpu-blower.jpg" alt="单风扇涡轮显卡，热从尾部排出" />
+              <figcaption>涡轮：一个风扇，热从档板抽到机箱外。双卡、多卡必须这种，单卡桌面会更吵、显存更热。</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="images/jd-3090-blower.jpg" alt="京东工业包装 3090 涡轮版商品主图" />
+              <figcaption>京东 SKU 10089260830605 主图。写着协助「推池和认款」——这是挖矿话术，不是猛禽那种游戏卡店。</figcaption>
+            </figure>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>项</th><th>这张京东涡轮</th><th>光魔里的猛禽 3090</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>芯</td><td>3090 24G，10496 CUDA，一样</td><td>一样</td></tr>
+              <tr><td>形态</td><td>单涡轮，双槽，工业包装</td><td>三风扇猛禽，厚，热往机箱里吹</td></tr>
+              <tr><td>适合</td><td>双卡 / 机架 / 24h 计算</td><td>单卡桌面、游戏、安静一点</td></tr>
+              <tr><td>渠道</td><td>京东，2026-01 值友看到约 8000–8500</td><td>整机 12999 里已经有一张</td></tr>
+              <tr><td>风险</td><td>工包、矿卡翻新、店保口径要问清</td><td>过保整机，售出不退</td></tr>
+            </tbody>
+          </table>
+
+          <p>什么值得买 2026-01-14 爆料：活动价 8475，券后大约 8051，标了「135 天新低」。价格会漂，以当天京东页为准。值友就三句，信息量够了：</p>
+
+          <div class="quotes">
+            <blockquote class="quote">
+              我没看错吧，3090 涨到 8000 了？
+              <span class="who">梅加雨 · 上海 · 什么值得买 2026-01-14</span>
+            </blockquote>
+            <blockquote class="quote">
+              这有啥奇怪的，2026 年还要卖新的 3060 呢
+              <span class="who">klaokai · 湖北 · 回复上一条</span>
+            </blockquote>
+            <blockquote class="quote">
+              矿卡翻新这一块
+              <span class="who">值友 2304665208 · 河南</span>
+            </blockquote>
+          </div>
+
+          <p>闲鱼同芯的三风扇 3090 当时大约 7000–7600（索泰花姑娘、火神、白猛禽）。京东这张贵一截，买的是「工包新品 + 涡轮形态 + 京东售后口径」，不是更强的 3090。</p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="tag ok">什么时候才看它</div>
+              <h3>另组一台双卡计算箱</h3>
+              <p>主板双槽、1000W+、全涡轮。两张这种卡才叠得起来。先租云上双 3090 确认 70B 真要用，再买实体。</p>
+            </article>
+            <article class="card">
+              <div class="tag no">现在别加购</div>
+              <h3>塞不进光魔，也换不下猛禽的体验</h3>
+              <p>单卡桌面，三风扇更安静、显存更凉。G35 已经有一张 24G。再买涡轮既插不进去，也解决不了 27B 之外的问题。</p>
+            </article>
+          </div>
+
+          <p>链接：<a href="https://item.jd.com/10089260830605.html">京东 10089260830605</a> · <a href="https://www.smzdm.com/p/166629531/">什么值得买爆料</a>。下单前核 GPU-Z 是不是真 3090 24G、保修起点、能不能走京东售后，不要只看主图上的英伟达标。</p>
+        </section>
+
         <section id="market">
           <h2>市场上找到的货</h2>
           <p class="sub">2026-08-28 翻闲鱼 / 淘宝。京东网页要登录，没搜成。闲鱼搜「整机」前几页几乎全是出租。</p>
@@ -344,7 +658,7 @@
           <div class="callout">
             预算卡在 2 万内、又要 CUDA 生态：光魔 G35 是目前最合适的整机。人在北京、能出到 3.2 万：五棵松 OMEN 45L 是「能玩」里最省事的。要保修：刃 9000K。死磕 64G 统一内存、不打 3A：还是无头 M1 Max。
           </div>
-          <p>本地 27B 是免费执行层，不是免费大脑。H3 本地是 768p 草稿。游戏、出图、模型同一时刻只开一个。</p>
+          <p>本地 27B 是免费执行层，不是免费大脑。H3 本地是 768p 草稿。游戏、出图、模型同一时刻只开一个。两张普通 3090 能叠成 48G 跑 70B，但叠不进光魔，也加不成游戏帧数。70B 先租云上双卡试，再谈第二张实体涡轮。</p>
           <p class="foot">整理自一次连续选型对话。价格和在售状态以当天页面为准。仓库：<a href="https://github.com/toolazytoname/cn-electronics-shop">toolazytoname/cn-electronics-shop</a></p>
         </section>
       </div>
